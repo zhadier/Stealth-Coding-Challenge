@@ -1,5 +1,6 @@
 import { useEffect, useReducer } from 'react';
 import axios from 'axios';
+import DataTable from './components/DataTable/DataTable';
 import './App.css';
 
 const initialState = {
@@ -53,7 +54,7 @@ const App = () => {
 
   return (
     <div className="App">
-      {companyAccounts.data.map((company) => <h1 key={company.Account}>{company.Account}</h1>)}
+      <DataTable dataList={companyAccounts.data} />
     </div>
   );
 };
