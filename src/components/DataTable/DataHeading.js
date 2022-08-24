@@ -1,10 +1,23 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-export const DataHeading = (props) => {
-  const { title, className } = props.title;
+const DataHeading = (props) => {
+  const { title, className } = props;
+
   return (
-    <th scope="col" className={`${className}py-3.5 text-left text-sm font-semibold text-gray-900`}>
+    <th scope="col" className={`${className} py-3 text-left text-xs font-medium uppercase tracking-wide text-gray-500`}>
       {title}
     </th>
   );
 };
+
+DataHeading.defaultProps = {
+  className: '',
+};
+
+DataHeading.propTypes = {
+  title: PropTypes.string.isRequired,
+  className: PropTypes.string,
+};
+
+export default DataHeading;
