@@ -109,7 +109,7 @@ const App = () => {
   const [viewState, dispatch] = useReducer(reducer, initialState);
   useEffect(() => async () => {
     try {
-      const response = await axios.get('http://127.0.0.1:3000/company-accounts');
+      const response = await axios.get('https://fastapi-stealth.herokuapp.com/company-accounts');
       setLoading(false);
       setError('');
       setCompanyAccounts(response.data);
