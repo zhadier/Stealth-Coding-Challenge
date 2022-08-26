@@ -12,7 +12,7 @@
 
 ## Deployment
 
-You can find the app [live link here](https://stealthChallenge.netlify.app/)
+You can find the app [live link here](https://stealth-challenge.netlify.app/)
 
 ## Back-end Repository
 You can find the back-end API [in this Repo](https://github.com/zhadier/fastApi-backend). The back-end was made using python and fast-API integrated with the AIrtable API for the database.
