@@ -1,11 +1,14 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useContext } from 'react';
 import PropTypes from 'prop-types';
 import DataTableEntries from './DataTableEntries';
 import DataTableHeader from './DataTableHeader';
+import FilterContext from '../../Store/filterContext';
 
 const DataTable = (props) => {
   const { dataList } = props;
-  const tableHeadings = useMemo(() => (['Account', 'MRR', 'Assigned CSM', 'Total Signals', 'Company Size', 'Website', 'Created', 'Last Modified', 'Renewal Date']), [dataList]);
+  const { hidden } = useContext(FilterContext).state;
+  const tableHeadings = useMemo(() => (['Account', 'MRR', 'Assigned CSM', 'Total Signals', 'Company Size', 'Website', 'Created', 'Last Modified', 'Renewal Date'].filter((data) => !hidden.includes(data))), [dataList, hidden]);
+
   return (
     <div className="flex flex-col">
       <div className="-my-2 overflow-x-auto">
@@ -13,7 +16,7 @@ const DataTable = (props) => {
           <div className="overflow-x-auto shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
             <table className="min-w-full divide-y divide-gray-300">
               <DataTableHeader headings={tableHeadings} />
-              <DataTableEntries entries={dataList} />
+              <DataTableEntries entries={dataList} headings={tableHeadings} />
             </table>
           </div>
         </div>

@@ -6,15 +6,23 @@ import {
 import PropTypes from 'prop-types';
 import SearchBar from './SearchBar';
 import GrayButton from './GrayButton';
-import FilterContainer from './FilterContainer';
+import FilterContainer from './Filter/FilterContainer';
+import HideContainer from './HideColumns/HideContainer';
 
 const DataToolbar = (props) => {
   const { entryCount, dataList } = props;
 
   const [showFilter, setShowFilter] = useState(false);
+  const [showHidden, setShowHidden] = useState(false);
 
   const handleFilter = () => {
     setShowFilter((state) => !state);
+    setShowHidden(false);
+  };
+
+  const handleHidden = () => {
+    setShowHidden((state) => !state);
+    setShowFilter(false);
   };
 
   return (
@@ -29,12 +37,13 @@ const DataToolbar = (props) => {
         </div>
         <div className="mt-2 flex gap-2">
           <GrayButton onClick={handleFilter} text={!showFilter ? 'Show Filters' : 'Hide Filters'} Icon={FilterIcon} />
-          <GrayButton text="Edit Columns" Icon={PencilIcon} />
+          <GrayButton onClick={handleHidden} text="Edit Columns" Icon={PencilIcon} />
           <SearchBar />
         </div>
 
       </div>
       {showFilter && <FilterContainer list={dataList} />}
+      {showHidden && <HideContainer list={dataList} />}
     </>
   );
 };

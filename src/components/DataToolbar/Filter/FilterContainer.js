@@ -4,7 +4,7 @@ import {
   PlusIcon,
 } from '@heroicons/react/solid';
 import FilterSelector from './FilterSelector';
-import FilterContext from '../../Store/filterContext';
+import FilterContext from '../../../Store/filterContext';
 
 const FilterContainer = (props) => {
   const ctx = useContext(FilterContext);

@@ -10,10 +10,7 @@ const CurrentView = (props) => {
   const filteredList = useMemo(() => (
     view.filters.reduce((array, filter) => (
       array.filter(
-        (data) => {
-          console.log(data[`${filter.name}`], filter.constraint, filter.bound);
-          return filterChecks(data[`${filter.name}`], filter.constraint, filter.bound);
-        },
+        (data) => filterChecks(data[`${filter.name}`], filter.constraint, filter.bound),
       )
     ), [...data])), [view]);
 
