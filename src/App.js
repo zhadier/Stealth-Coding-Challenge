@@ -106,16 +106,15 @@ const App = () => {
   const [error, setError] = useState('');
   // Filter List state to keep Track of different Filterable Views
   const [viewState, dispatch] = useReducer(reducer, initialState);
-  useEffect(() => async () => {
-    try {
-      const response = await axios.get('https://fastapi-stealth.herokuapp.com/company-accounts');
+  useEffect(() => {
+    axios.get('https://fastapi-stealth.herokuapp.com/company-accounts').then((response) => {
       setLoading(false);
       setError('');
       setCompanyAccounts(response.data);
-    } catch (err) {
+    }).catch(() => {
       setLoading(false);
       setError('Unexpected error, try reloading the page.');
-    }
+    });
   }, []);
 
   if (loading) {
