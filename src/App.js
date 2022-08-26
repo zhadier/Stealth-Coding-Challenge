@@ -46,6 +46,7 @@ const classNames = (...classes) => classes.filter(Boolean).join(' ');
 const initialState = {
   viewList: [{ viewName: 'Users', filters: [] }],
   currentView: { viewName: 'Users', filters: [] },
+  hidden: [],
 };
 
 const reducer = (state, action) => {
@@ -78,6 +79,17 @@ const reducer = (state, action) => {
       };
 
       return newState;
+    }
+
+    case 'UPDATE HIDDEN': {
+      const check = state.hidden.filter((item) => item !== action.payLoad);
+      if (check.length < state.hidden.length) {
+        return ({ ...state, hidden: check });
+      }
+      return ({
+        ...state,
+        hidden: [...state.hidden, action.payLoad],
+      });
     }
 
     default: {
@@ -303,7 +315,10 @@ const App = () => {
           dispatchView: dispatch,
         }}
         >
-          <CurrentView data={companyAccounts} view={viewState.currentView} />
+          <CurrentView
+            data={companyAccounts}
+            view={viewState.currentView}
+          />
         </FilterContext.Provider>
       </div>
     </div>
