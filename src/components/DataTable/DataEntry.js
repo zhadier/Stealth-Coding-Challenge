@@ -10,7 +10,6 @@ const DataEntry = (props) => {
   const { data } = props;
 
   const { hidden } = useContext(FilterContext).state;
-  console.log(hidden);
   return (
     <tr>
       {!hidden.includes('Account') && <AccountInfo image={data['Company Logo']} account={data.Account} segment={data.Segments} />}
