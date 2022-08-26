@@ -12,7 +12,7 @@ const AccountInfo = (props) => {
         </div>
         <div className="ml-4">
           <div className="font-medium text-gray-900">{account}</div>
-          <div className="text-gray-500">{segment}</div>
+          <div className="text-gray-500 text-xs flex gap-1">{segment.map((item) => <span key={item}>{item}</span>)}</div>
         </div>
       </div>
     </td>
